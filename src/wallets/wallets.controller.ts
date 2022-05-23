@@ -1,4 +1,10 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 
 @Controller('wallets')
-export class WalletsController {}
+export class WalletsController {
+    @Post()
+    create(): string {
+        return 'hello';
+    }
+
+}
