@@ -1,5 +1,4 @@
-// Uncomment the following line to run `npx sequelize-cli db:migrate`
-// require('dotenv').config({ path: process.env.ENV_PATH ? process.env.ENV_PATH : '.env' });
+require('dotenv').config({ path: process.env.ENV_PATH ? process.env.ENV_PATH : '.env' });
 
 const defaultConfig = {
   username: process.env.DB_USERNAME,

@@ -1,11 +1,11 @@
 import { Sequelize, Dialect } from 'sequelize';
-import config from '../../config/database';
+import { databaseConfig } from '../config/database.config';
 
 const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  { dialect: config.dialect as Dialect },
+  databaseConfig.database,
+  databaseConfig.username,
+  databaseConfig.password,
+  { dialect: databaseConfig.dialect as Dialect },
 );
 
 export { Sequelize, sequelize };
