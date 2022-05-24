@@ -1,6 +1,6 @@
 import { Controller, Post, Body, UseInterceptors } from '@nestjs/common';
 import { WalletErrorInterceptor } from 'src/interceptors/wallet-error.interceptor';
-import { WalletDTO } from '../models/wallet/';
+import { Wallet } from '../models';
 import { WalletsService } from '../services/wallets.service';
 
 @Controller('wallets')
@@ -9,7 +9,7 @@ export class WalletsController {
   constructor(private walletsService: WalletsService) {}
 
   @Post()
-  create(@Body() params: WalletDTO) {
+  create(@Body() params: Wallet) {
     return this.walletsService.create(params);
   }
 }

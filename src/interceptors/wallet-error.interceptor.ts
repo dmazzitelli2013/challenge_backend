@@ -4,7 +4,6 @@ import {
   ExecutionContext,
   Injectable,
   NestInterceptor,
-  NotFoundException,
 } from '@nestjs/common';
 import { catchError, Observable } from 'rxjs';
 import { WalletDuplicatedException } from '../exceptions/wallet-duplicated.exception';
