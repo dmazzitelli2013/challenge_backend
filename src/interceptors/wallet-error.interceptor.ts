@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   CallHandler,
   ExecutionContext,
   Injectable,
@@ -13,6 +14,9 @@ export class WalletErrorInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       catchError((error) => {
+        if (error instanceof BadRequestException) {
+          throw error;
+        }
         switch (error.original.code) {
           case '23505':
             throw new WalletDuplicatedException();

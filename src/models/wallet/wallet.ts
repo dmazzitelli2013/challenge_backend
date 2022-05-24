@@ -1,9 +1,9 @@
 import { Model, Optional, DataTypes } from 'sequelize';
-import { sequelize } from '.';
+import { sequelize } from '..';
+import IWallet from './wallet.interface';
 
-interface WalletAttributes {
+interface WalletAttributes extends IWallet {
   id: string;
-  address: string;
 }
 
 type WalletCreationAttributes = Optional<WalletAttributes, 'id'>;
