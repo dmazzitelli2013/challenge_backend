@@ -1,8 +1,8 @@
 import { Sequelize, Dialect } from 'sequelize';
-import { databaseConfig } from '../config/database.config';
+import { databaseConfig } from '../config/config';
 
 const sequelize = new Sequelize(
-  databaseConfig.database,
+  databaseConfig.name,
   databaseConfig.username,
   databaseConfig.password,
   { dialect: databaseConfig.dialect as Dialect },
