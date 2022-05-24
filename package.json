@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
-    "@nestjs/config": "^2.0.1",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "dotenv": "^16.0.1",
     "helmet": "^5.1.0",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
