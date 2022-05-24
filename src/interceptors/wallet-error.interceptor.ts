@@ -14,6 +14,7 @@ export class WalletErrorInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       catchError((error) => {
+        // TODO: refactor this
         if (error instanceof BadRequestException) {
           throw error;
         }
