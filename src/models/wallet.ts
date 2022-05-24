@@ -25,6 +25,7 @@ const Wallet = sequelize.define<WalletInstance>('Wallet', {
   },
   address: {
     allowNull: false,
+    unique: true,
     type: DataTypes.TEXT,
   },
 });
