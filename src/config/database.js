@@ -1,3 +1,4 @@
+// This file is used by Sequelize to create new models or run migrations
 require('dotenv').config({ path: process.env.ENV_PATH ? process.env.ENV_PATH : '.env' });
 
 const defaultConfig = {
