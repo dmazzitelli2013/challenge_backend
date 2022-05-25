@@ -1,0 +1,1 @@
+export { WalletDuplicatedException } from './wallet-duplicated/wallet-duplicated.exception';

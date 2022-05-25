@@ -1,0 +1,1 @@
+export { WalletErrorInterceptor } from './wallet-error/wallet-error.interceptor';

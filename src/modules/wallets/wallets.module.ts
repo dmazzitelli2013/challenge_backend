@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { WalletsController } from '../controllers/wallets.controller';
-import { WalletsService, EtherscanService, TasksService } from '../services';
+import { WalletsController } from 'src/controllers';
+import { WalletsService, EtherscanService, TasksService } from 'src/services';
 
 @Module({
   controllers: [WalletsController],

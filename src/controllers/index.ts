@@ -1,0 +1,1 @@
+export { WalletsController } from './wallets/wallets.controller';
