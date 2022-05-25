@@ -13,16 +13,15 @@ export class WalletErrorInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       catchError((error) => {
-        // TODO: refactor this
-        if (error instanceof BadRequestException) {
-          throw error;
+        if ('original' in error && 'code' in error.original) {
+          switch (error.original.code) {
+            case '23505':
+              throw new WalletDuplicatedException();
+            default:
+              throw error;
+          }
         }
-        switch (error.original.code) {
-          case '23505':
-            throw new WalletDuplicatedException();
-          default:
-            throw error;
-        }
+        throw error;
       }),
     );
   }
