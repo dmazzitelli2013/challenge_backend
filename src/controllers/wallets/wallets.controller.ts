@@ -9,9 +9,9 @@ import {
   Get,
   Query,
 } from '@nestjs/common';
-import { WalletErrorInterceptor } from 'src/interceptors/wallet-error.interceptor';
-import { Wallet } from '../models';
-import { WalletsService } from '../services';
+import { WalletErrorInterceptor } from 'src/interceptors';
+import { Wallet } from 'src/models';
+import { WalletsService } from 'src/services';
 
 @Controller('wallets')
 @UseInterceptors(WalletErrorInterceptor)

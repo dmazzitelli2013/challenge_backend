@@ -1,12 +1,11 @@
 import {
-  BadRequestException,
   CallHandler,
   ExecutionContext,
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
 import { catchError, Observable } from 'rxjs';
-import { WalletDuplicatedException } from '../exceptions/wallet-duplicated.exception';
+import { WalletDuplicatedException } from 'src/exceptions';
 
 @Injectable()
 export class WalletErrorInterceptor implements NestInterceptor {

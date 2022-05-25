@@ -1,0 +1,1 @@
+export { WalletsModule } from './wallets/wallets.module';
