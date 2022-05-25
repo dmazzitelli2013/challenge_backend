@@ -23,7 +23,8 @@ export class WalletsService {
 
   async create(params: Wallet) {
     const wallet = await Wallet.create(params);
-    const oldestTransactionDate = await this.etherscanService.getOldestTransactionDate(params.address);
+    const oldestTransactionDate =
+      await this.etherscanService.getOldestTransactionDate(params.address);
     await wallet.update({ oldestTransactionDate: oldestTransactionDate });
     return wallet.toJSON();
   }
@@ -32,6 +33,10 @@ export class WalletsService {
     const wallet = await this.getWallet(id);
     wallet.update({ isFavorite: isFavorite });
     return wallet.toJSON();
+  }
+
+  async getWalletsWithoutOldestTransaction(): Promise<Wallet[]> {
+    return await Wallet.findAll({ where: { oldestTransactionDate: null } });
   }
 
   private async getWallet(id: number) {
