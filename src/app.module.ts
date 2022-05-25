@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
-import { WalletsModule } from 'src/modules';
+import { WalletsModule, PriceQuotesModule } from 'src/modules';
 
 @Module({
-  imports: [WalletsModule, ScheduleModule.forRoot()]
+  imports: [WalletsModule, PriceQuotesModule, ScheduleModule.forRoot()],
 })
 export class AppModule {}
