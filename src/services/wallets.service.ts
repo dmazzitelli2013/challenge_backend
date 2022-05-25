@@ -1,11 +1,15 @@
-import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import Wallet from '../models/wallet.model';
 
 @Injectable()
 export class WalletsService {
   async findAll(query: any) {
-    // TODO: use query to sort
-    const wallets = await Wallet.findAll();
+    const sortParameters = this.getSortParameters(query);
+    const wallets = await Wallet.findAll({ order: [sortParameters] });
     return wallets.map((wallet) => wallet.toJSON());
   }
 
@@ -31,5 +35,20 @@ export class WalletsService {
       throw new UnprocessableEntityException('Wallet ID not found');
     }
     return wallet;
+  }
+
+  private getSortParameters(query): [string, string] {
+    const validFields = Object.keys(Wallet.getAttributes());
+    const field = query.field || 'createdAt';
+    if (!validFields.includes(field)) {
+      throw new BadRequestException('Invalid field');
+    }
+
+    const sort = query.sort || 'desc';
+    if (!['DESC', 'ASC'].includes(sort.toUpperCase())) {
+      throw new BadRequestException('Invalid sort mode');
+    }
+
+    return [field, sort.toUpperCase()];
   }
 }
