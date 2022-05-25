@@ -18,4 +18,14 @@ const databaseConfig: IDatabaseConfig = {
   dialect: 'postgres',
 };
 
-export { databaseConfig };
+interface IEtherscanConfig {
+  apiUrl: string;
+  apiKey: string;
+}
+
+const etherscanConfig: IEtherscanConfig = {
+  apiUrl: process.env.ETHERSCAN_API_URL,
+  apiKey: process.env.ETHERSCAN_API_KEY,
+};
+
+export { databaseConfig, etherscanConfig };

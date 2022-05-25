@@ -3,10 +3,13 @@ import {
   Injectable,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import Wallet from '../models/wallet.model';
+import { Wallet } from '../../models';
+import { EtherscanService } from '../etherscan/etherscan.service';
 
 @Injectable()
 export class WalletsService {
+  constructor(private etherscanService: EtherscanService) {}
+
   async findAll(query: any) {
     const sortParameters = this.getSortParameters(query);
     const wallets = await Wallet.findAll({ order: [sortParameters] });
@@ -20,6 +23,9 @@ export class WalletsService {
 
   async create(params: Wallet) {
     const wallet = await Wallet.create(params);
+    const oldestTransactionDate =
+      await this.etherscanService.getOldestTransactionDate(params.address);
+    await wallet.update({ oldestTransactionDate: oldestTransactionDate });
     return wallet.toJSON();
   }
 
@@ -27,6 +33,10 @@ export class WalletsService {
     const wallet = await this.getWallet(id);
     wallet.update({ isFavorite: isFavorite });
     return wallet.toJSON();
+  }
+
+  async getWalletsWithoutOldestTransaction(): Promise<Wallet[]> {
+    return await Wallet.findAll({ where: { oldestTransactionDate: null } });
   }
 
   private async getWallet(id: number) {
