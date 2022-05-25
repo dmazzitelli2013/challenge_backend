@@ -12,6 +12,15 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
+      oldestTransactionDate: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
+      isFavorite: {
+        allowNull: null,
+        type: Sequelize.BOOLEAN,
+        default: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
