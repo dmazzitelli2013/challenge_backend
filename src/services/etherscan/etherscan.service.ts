@@ -35,6 +35,8 @@ export class EtherscanService {
         return date;
       }
       return null;
+    }).catch((error) => {
+        return null;
     });
 
     return request;
